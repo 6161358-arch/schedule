@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דף נחיתה חכם</title>
+    <style>
+        :root { --primary-color: #2c3e50; --accent-color: #3498db; --bg-color: #f4f7f6; --card-bg: #ffffff; }
+        body {
+            font-family: 'Heebo', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            background: linear-gradient(135deg, #ffcfdf, #fefdca, #e0f9b5, #a0e7e5, #b4f8c8);
+            background-size: 400% 400%;
+            animation: gradientBG 18s ease infinite;
+            color: #333;
+        }
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem 100px;
+            text-align: center;
+        }
+        h1 { font-size: 2.4rem; margin-bottom: 10px; }
+        .intro {
+            background: rgba(255,255,255,0.85);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .schedule-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-right: 5px solid var(--accent-color);
+        }
+        .schedule-card h2 { color: var(--primary-color); margin-top: 0; }
+        .time-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px dashed #eee; }
+        .time-row:last-child { border-bottom: none; }
+        .label { font-weight: bold; }
+        .time { font-family: monospace; font-size: 1.1rem; color: var(--accent-color); font-weight: bold; }
+
+        .chat-box {
+            margin-top: 40px;
+            background: rgba(255,255,255,0.85);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .button {
+            display: inline-block; padding: 12px 24px;
+            background-color: #6a5acd; color: white;
+            font-size: 1.1rem; text-decoration: none;
+            border-radius: 30px; transition: 0.3s;
+            cursor: pointer;
+        }
+        .button:hover { background-color: #7b6df0; transform: scale(1.05); }
+    
+
+        /* אייקונים מתוקים */
+        .icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* אנימציית ציפה */
+        .float {
+            animation: floatAnim 3s ease-in-out infinite;
+        }
+        @keyframes floatAnim {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* קופסא עם אייקון */
+        .feature-box {
+            background: rgba(255,255,255,0.85);
+            padding: 25px;
+            border-radius: 18px;
+            margin: 20px 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+        }
+
+        /* בועת צ'אט קופצת */
+        #chat-bubble {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #006dff;
+            color: #fff;
+            padding: 16px 22px;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            animation: pop 0.5s ease-out, bounce 2.5s infinite;
+            z-index: 9999;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.3); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>הגבאי האוטומטי</h1>
+        <div>השקט שלך לחלק הכי קשוח לגבאי - זמני השבת</div>
+    </header>
+
+    <div class="container">
+        <div class="intro feature-box float">
+            <p>
+                ברוך הבא! זהו הרעיון האוטומציונרי הכי מושלם לגבאי – 
+                בכל יום חמישי תקבל אוטומטית קובץ מסודר למייל עם כל פרטי השבת הקרובה,
+                בצורה מסודרת, ברורה ונוחה.
+            </p>
+            <p>
+                והכל בצורה קלה נוחה פשוט. אוטומט..
+            </p>
+        </div>
+
+        <div class="intro feature-box" style="margin-top:25px;">
+            <h2>אני רוצה להבין יותר!!</h2>
+            <p>
+                הגעת למקום הכי מושלם בשבילך, אנחנו לוקחים ממך את פרטי בית הכנסת –
+                זמני תפילות שיעורים הפסקות קידושים וכו'
+                עם כל השינויים הכי נודניקיים קיץ/ חורף,שקיעה וכו'.
+            </p>
+        </div>
+
+        <div id="schedule-container"></div>
+
+        <div class="intro feature-box">
+            <h2>מה הרעיון הזה עושה עבורך?</h2>
+            <ul style="text-align:right; line-height:1.8; font-size:1.1rem;">
+                <li>מוריד את הלחץ מהמודעה לבית הכנסת כל ער"ש</li>
+                <li>מקל עליך להזין באופן אוטומטי את שמות רבנים המברים והכל מעודכן במודעה</li>
+                <li>מאפשר להזין את תורמי הקידושים ובעלי השמחות אוטומטית</li>
+                <li>ואנחנו זמינים כל הזמן בצ'אט בוט המוכשר לנו ובשיחה עם נציג</li>
+            </ul>
+        </div>
+
+        <div class="intro feature-box">
+            <h2>איזה דברים אני צריך בשביל זה?</h2>
+            <p>
+                גש לצ'אט בוט שלנו שמחכה לך בפינת העמוד ודבר איתו,
+                בהמשך תתן לנו את זמני היום ואנחנו נדאג מכאן להכל!!!.
+            </p>
+        </div>
+
+        <div class="chat-box">
+            <h3>רוצה לדבר איתנו?</h3>
+            <p>מוזמן לפתוח את הצ'אט, לשאול שאלות, לקבל מידע או לתאם פרטים.</p>
+            <div id="chatbot-anchor"></div>
+        </div>
+
+        <a href="javascript:void(0)" onclick="openChat()" class="button">פתיחת הצ'אט</a>
+    </div>
+
+    <div id="chat-bubble" onclick="openChat()">
+        💬 צריך עזרה?
+    </div>
+
+    <script>
+       
+
+        function renderData(data) {
+            const container = document.getElementById('schedule-container');
+            if(!container) return; // מניעת שגיאה אם האלמנט לא קיים
+            
+            container.innerHTML = '';
+            data.sections.forEach(section => {
+                let card = `<div class='schedule-card'><h2>${section.title}</h2>`;
+                section.items.forEach(item => {
+                    card += `<div class='time-row'><span class='label'>${item.label}</span><span class='time'>${item.time}</span></div>`;
+                });
+                card += `</div>`;
+                container.innerHTML += card;
+            });
+        }
+
+        loadSchedule();
+        console.log("Landing page loaded.");
+    </script>
+
+    <script src="https://chatrace.com/webchat/plugin.js?v=6"></script>
+    <script>
+        // הגדרת הצ'אט עם ה-ID החדש
+        ktt10.setup({
+            id: "NYJSD4N2WeSFBFnY51h",
+            accountId: "1133996",
+            color: "#006dff"
+        });
+
+        // פונקציה לפתיחת הצ'אט בלחיצה על כפתורים
+        function openChat() {
+            if (window.ktt10) {
+                ktt10.open();
+            }
+        }
+    </script>
+</body>
+</html>
