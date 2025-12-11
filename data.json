@@ -1,1 +1,69 @@
-<script src="https://chatrace.com/webchat/plugin.js?v=6"></script><script>ktt10.setup({id:"HJ5rbnJUEG87VuUIMMVH",accountId:"1133996",color:"#006dff"})</script>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>לוח זמנים - בית הכנסת</title>
+    <style>
+        :root { --primary-color: #2c3e50; --accent-color: #3498db; --bg-color: #f4f7f6; --card-bg: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: #333; }
+        header { background-color: var(--primary-color); color: white; padding: 1rem; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; padding-bottom: 80px; /* רווח למטה בשביל הבוט */ }
+        .update-time { text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .schedule-card { background: var(--card-bg); border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-right: 5px solid var(--accent-color); }
+        .schedule-card h2 { margin-top: 0; color: var(--primary-color); border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+        .time-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px dashed #eee; }
+        .time-row:last-child { border-bottom: none; }
+        .label { font-weight: bold; }
+        .time { font-family: monospace; font-size: 1.1rem; color: var(--accent-color); font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>לוח זמנים שבועי</h1>
+        <div id="synagogue-name">בית הכנסת המרכזי</div>
+    </header>
+
+    <div class="container">
+        <div class="update-time" id="last-update">טוען נתונים...</div>
+        <div id="schedule-container"></div>
+    </div>
+
+    <script src="https://chatrace.com/webchat/plugin.js?v=6"></script>
+    <script>ktt10.setup({id:"HJ5rbnJUEG87VuUIMMVH",accountId:"1133996",color:"#006dff"})</script>
+    <script>
+        async function loadSchedule() {
+            try {
+                const response = await fetch('data.json'); 
+                if (!response.ok) throw new Error("קובץ נתונים לא נמצא");
+                const data = await response.json();
+                renderData(data);
+            } catch (error) {
+                console.log("משתמש בנתוני ברירת מחדל להדגמה");
+                const defaultData = {
+                    lastUpdated: "עדיין לא עודכן",
+                    sections: [
+                        { title: "הודעה", items: [{ label: "ברוכים הבאים", time: "האתר בבנייה" }] }
+                    ]
+                };
+                renderData(defaultData);
+            }
+        }
+
+        function renderData(data) {
+            document.getElementById('last-update').innerText = 'עודכן לאחרונה: ' + data.lastUpdated;
+            const container = document.getElementById('schedule-container');
+            container.innerHTML = ''; 
+            data.sections.forEach(section => {
+                let html = `<div class="schedule-card"><h2>${section.title}</h2><div>`;
+                section.items.forEach(item => {
+                    html += `<div class="time-row"><span class="label">${item.label}</span><span class="time">${item.time}</span></div>`;
+                });
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+        loadSchedule();
+    </script>
+</body>
+</html>
