@@ -7,8 +7,7 @@
     <style>
         :root { --primary-color: #2c3e50; --accent-color: #3498db; --bg-color: #f4f7f6; --card-bg: #ffffff; }
         body {
-            font-family: 'Heebo', sans-serif;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Heebo', sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0; padding: 0;
             background: linear-gradient(135deg, #ffcfdf, #fefdca, #e0f9b5, #a0e7e5, #b4f8c8);
             background-size: 400% 400%;
@@ -54,7 +53,6 @@
         .time-row:last-child { border-bottom: none; }
         .label { font-weight: bold; }
         .time { font-family: monospace; font-size: 1.1rem; color: var(--accent-color); font-weight: bold; }
-
         .chat-box {
             margin-top: 40px;
             background: rgba(255,255,255,0.85);
@@ -62,33 +60,13 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        .button {
-            display: inline-block; padding: 12px 24px;
-            background-color: #6a5acd; color: white;
-            font-size: 1.1rem; text-decoration: none;
-            border-radius: 30px; transition: 0.3s;
-            cursor: pointer;
-        }
-        .button:hover { background-color: #7b6df0; transform: scale(1.05); }
-    
-
-        /* אייקונים מתוקים */
-        .icon {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-
-        /* אנימציית ציפה */
-        .float {
-            animation: floatAnim 3s ease-in-out infinite;
-        }
+        .icon { font-size: 2.2rem; margin-bottom: 10px; }
+        .float { animation: floatAnim 3s ease-in-out infinite; }
         @keyframes floatAnim {
             0% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0); }
         }
-
-        /* קופסא עם אייקון */
         .feature-box {
             background: rgba(255,255,255,0.85);
             padding: 25px;
@@ -96,113 +74,54 @@
             margin: 20px 0;
             box-shadow: 0 6px 12px rgba(0,0,0,0.12);
         }
-
-        /* בועת צ'אט קופצת */
-        #chat-bubble {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: #006dff;
-            color: #fff;
-            padding: 16px 22px;
-            border-radius: 40px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-            animation: pop 0.5s ease-out, bounce 2.5s infinite;
-            z-index: 9999;
-        }
-        @keyframes pop {
-            0% { transform: scale(0.3); opacity: 0; }
-            80% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); }
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>הגבאי האוטומטי: הקלה בעול ניהול זמני השבת</h1>
-        <div>השקט הנפשי שלך מול האתגר המרכזי של הגבאי: ארגון זמני השבת.</div>
-    </header>
 
-    <div class="container">
-        <div class="intro feature-box float">
-            <p>
-                ברוכים הבאים! הכירו את הפתרון האוטומטי המושלם לגבאים: – 
-                מידי יום חמישי, קובץ מסודר עם כל פרטי השבת הקרובה יגיע ישירות למייל שלכם – באופן אוטומטי, ברור ונוח.
-            </p>
-            <p>
-               הכול מתבצע בקלות, ביעילות ובאופן אוטומטי לחלוטין!!
-            </p>
-        </div>
+<header>
+    <h1>הגבאי האוטומטי: הקלה בעול ניהול זמני השבת</h1>
+    <div>השקט הנפשי שלך מול האתגר המרכזי של הגבאי: ארגון זמני השבת.</div>
+</header>
 
-        <div class="intro feature-box" style="margin-top:25px;">
-            <h2>רוצים לדעת יותר?</h2>
-            <p>הגעתם למקום הנכון. אנו נאסוף מכם את פרטי בית הכנסת המלאים 
-               – זמני תפילות, שיעורים, הפסקות, קידושים ועוד – 
-                תוך התחשבות בכל השינויים התקופתיים וההלכתיים (קיץ/חורף, שקיעה ועוד).
-            </p>
-        </div>
+<div class="container">
 
-        <div id="schedule-container"></div>
+    <div class="intro feature-box float">
+        <p>
+            ברוכים הבאים! הכירו את הפתרון האוטומטי המושלם לגבאים –  
+            מידי יום חמישי, קובץ מסודר עם כל פרטי השבת הקרובה יגיע ישירות למייל שלכם.
+        </p>
+        <p>הכול מתבצע בקלות, ביעילות ובאופן אוטומטי לחלוטין.</p>
+    </div>
 
-        <div class="intro feature-box">
-            <h2>כבר מחוברים אלינו?</h2>
-            <ul style="text-align:right; line-height:1.8; font-size:1.1rem;">
-                <li>רוצים לעדכן פרטי שבת קרובה?.</li>
-                <li>לעדכן מתפללים?.</li>
-                <li>לעדכן חובות?י.</li>
-                <li>זלעדכן תשלומים.</li>
-            </ul>
-        </div>
+    <div class="intro feature-box">
+        <h2>רוצים לדעת יותר?</h2>
+        <p>
+            אנו נאסוף מכם את פרטי בית הכנסת המלאים – זמני תפילות, שיעורים,
+            הפסקות, קידושים ועוד – תוך התחשבות בשינויים תקופתיים.
+        </p>
+    </div>
 
-        <div class="intro feature-box">
-            <h2>פשוט מאד מה שהדרש מכם הוא?</h2>
-            <p>
-               גשו לצ'אט בוט שלנו, הממתין לכם בפינת העמוד, ושוחחו איתו. 
-               לאחר מכן, ואנו נדאג לכל היתר!
-            </p>
-        </div>
+    <div id="schedule-container"></div>
 
-        <div class="chat-box">
-            <h3>מעוניינים לשוחח איתנו?</h3>
-            <p>אתם מוזמנים לפתוח את הצ'אט בפינת העמוד התחתונה, לשאול שאלות, לקבל מידע מפורט או לתאם פגישה.</p>
-            <div id="chatbot-anchor"></div>
-        </div>
+    <div class="intro feature-box">
+        <h2>אילו יתרונות הפתרון שלנו מציע?</h2>
+        <ul style="text-align:right; line-height:1.8; font-size:1.1rem;">
+            <li>הפחתת לחץ סביב הכנת מודעות.</li>
+            <li>עדכון אוטומטי של שמות ונושאים.</li>
+            <li>ניהול קידושים ושמחות בקלות.</li>
+            <li>זמינות דרך צ'אט חכם.</li>
+        </ul>
+    </div>
 
+    <div class="chat-box">
+        <h3>מעוניינים לשוחח איתנו?</h3>
+        <p>פתחו את הצ'אט בתחתית העמוד.</p>
+    </div>
 
-    <script>
-       
-
-        function renderData(data) {
-            const container = document.getElementById('schedule-container');
-            if(!container) return; // מניעת שגיאה אם האלמנט לא קיים
-            
-            container.innerHTML = '';
-            data.sections.forEach(section => {
-                let card = `<div class='schedule-card'><h2>${section.title}</h2>`;
-                section.items.forEach(item => {
-                    card += `<div class='time-row'><span class='label'>${item.label}</span><span class='time'>${item.time}</span></div>`;
-                });
-                card += `</div>`;
-                container.innerHTML += card;
-            });
-        }
-
-        loadSchedule();
-        console.log("Landing page loaded.");
-    </script>
-
-    <script src="https://chatrace.com/webchat/plugin.js?v=6"></script>
-    <script>
+</div>
 
 <script src="https://chatrace.com/webchat/plugin.js?v=6"></script>
 <script>
@@ -215,4 +134,3 @@ ktt10.setup({
 
 </body>
 </html>
-
